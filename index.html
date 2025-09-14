@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prashant Guragain | Shadow & Light</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'space': ['Space Grotesk', 'sans-serif'],
+                    },
+                    colors: {
+                        'neon-blue': '#00f0ff',
+                        'neon-green': '#00ff9d',
+                        'dark-900': '#0a0a0a',
+                        'dark-800': '#121212',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'space', sans-serif;
+            background-color: #0a0a0a;
+            color: #f0f0f0;
+            overflow-x: hidden;
+        }
+        .glow-text {
+            text-shadow: 0 0 8px rgba(0, 240, 255, 0.7);
+        }
+        .glow-border {
+            box-shadow: 0 0 15px rgba(0, 240, 255, 0.5);
+        }
+        .glow-hover:hover {
+            box-shadow: 0 0 20px rgba(0, 240, 255, 0.7);
+        }
+        .sidebar {
+            backdrop-filter: blur(8px);
+        }
+        .skill-bar {
+            background: linear-gradient(90deg, #00f0ff, #00ff9d);
+        }
+        input:focus, textarea:focus {
+            box-shadow: 0 0 10px rgba(0, 240, 255, 0.5);
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -28px;
+            top: 0;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #00f0ff;
+            border: 2px solid #0a0a0a;
+        }
+        .profile-circle {
+            animation: pulse 4s infinite;
+        }
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(0, 240, 255, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(0, 240, 255, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(0, 240, 255, 0); }
+        }
+    </style>
+</head>
+<body class="flex min-h-screen">
+    <!-- Left Sidebar -->
+    <div class="sidebar hidden md:flex flex-col items-center py-8 px-6 w-24 lg:w-64 border-r border-gray-800 bg-dark-900 bg-opacity-80 fixed h-full z-10">
+        <div class="profile-circle mb-8 w-20 h-20 lg:w-28 lg:h-28 rounded-full overflow-hidden border-2 border-neon-blue relative">
+            <img src="http://static.photos/technology/200x200/42" alt="Profile" class="w-full h-full object-cover">
+        </div>
+        
+        <h1 class="text-xl lg:text-2xl font-bold text-center mb-2 glow-text hidden lg:block">Prashant Guragain</h1>
+        <p class="text-xs lg:text-sm text-gray-400 text-center mb-8 hidden lg:block">Aspiring Computer Scientist | Future Cybersecurity Expert</p>
+        
+        <nav class="flex flex-col items-center lg:items-start w-full space-y-8">
+            <a href="#home" class="flex items-center text-gray-300 hover:text-neon-blue transition-colors group">
+                <i data-feather="home" class="w-5 h-5 lg:mr-4"></i>
+                <span class="hidden lg:inline group-hover:glow-text">Home</span>
+            </a>
+            <a href="#about" class="flex items-center text-gray-300 hover:text-neon-blue transition-colors group">
+                <i data-feather="user" class="w-5 h-5 lg:mr-4"></i>
+                <span class="hidden lg:inline group-hover:glow-text">About</span>
+            </a>
+            <a href="#skills" class="flex items-center text-gray-300 hover:text-neon-blue transition-colors group">
+                <i data-feather="code" class="w-5 h-5 lg:mr-4"></i>
+                <span class="hidden lg:inline group-hover:glow-text">Skills</span>
+            </a>
+            <a href="#projects" class="flex items-center text-gray-300 hover:text-neon-blue transition-colors group">
+                <i data-feather="folder" class="w-5 h-5 lg:mr-4"></i>
+                <span class="hidden lg:inline group-hover:glow-text">Projects</span>
+            </a>
+            <a href="#contact" class="flex items-center text-gray-300 hover:text-neon-blue transition-colors group">
+                <i data-feather="mail" class="w-5 h-5 lg:mr-4"></i>
+                <span class="hidden lg:inline group-hover:glow-text">Contact</span>
+            </a>
+        </nav>
+    </div>
+
+    <!-- Mobile Header -->
+    <div class="md:hidden fixed top-0 left-0 right-0 bg-dark-900 bg-opacity-90 z-50 py-4 px-6 flex justify-between items-center border-b border-gray-800">
+        <h1 class="text-xl font-bold glow-text">Prashant</h1>
+        <button id="menu-toggle" class="text-gray-300 hover:text-neon-blue">
+            <i data-feather="menu"></i>
+        </button>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="md:hidden fixed top-16 left-0 right-0 bg-dark-800 py-4 px-6 shadow-lg hidden z-40">
+        <nav class="flex flex-col space-y-4">
+            <a href="#home" class="text-gray-300 hover:text-neon-blue">Home</a>
+            <a href="#about" class="text-gray-300 hover:text-neon-blue">About</a>
+            <a href="#skills" class="text-gray-300 hover:text-neon-blue">Skills</a>
+            <a href="#projects" class="text-gray-300 hover:text-neon-blue">Projects</a>
+            <a href="#contact" class="text-gray-300 hover:text-neon-blue">Contact</a>
+        </nav>
+    </div>
+
+    <!-- Main Content -->
+    <div class="flex-1 ml-0 md:ml-24 lg:ml-64">
+        <!-- Home Section -->
+        <section id="home" class="min-h-screen flex items-center justify-center px-6 py-24 md:py-0 relative overflow-hidden">
+            <div class="absolute inset-0 bg-gradient-to-br from-dark-900 to-black opacity-90"></div>
+            <div class="max-w-4xl mx-auto relative z-10 text-center" data-aos="fade-up">
+                <h1 class="text-4xl md:text-6xl font-bold mb-4 glow-text">Hi, I'm Prashant <span class="wave">👋</span></h1>
+                <p class="text-xl md:text-2xl text-gray-300 mb-8 max-w-2xl mx-auto">
+                    Turning passion for computers into real-world impact.
+                </p>
+                <div class="flex justify-center space-x-4">
+                    <a href="#projects" class="px-6 py-3 bg-neon-blue text-dark-900 font-medium rounded-full hover:bg-neon-green transition-colors glow-hover">
+                        View My Work
+                    </a>
+                    <a href="#contact" class="px-6 py-3 border border-neon-blue text-neon-blue font-medium rounded-full hover:bg-neon-blue hover:text-dark-900 transition-colors glow-hover">
+                        Get In Touch
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Animated Background Elements -->
+            <div class="absolute inset-0 overflow-hidden opacity-20">
+                <div class="absolute top-0 left-0 w-2 h-2 bg-neon-blue rounded-full animate-pulse" style="animation-delay: 0s; top: 10%; left: 20%;"></div>
+                <div class="absolute top-0 left-0 w-2 h-2 bg-neon-green rounded-full animate-pulse" style="animation-delay: 1s; top: 30%; left: 80%;"></div>
+                <div class="absolute top-0 left-0 w-2 h-2 bg-neon-blue rounded-full animate-pulse" style="animation-delay: 2s; top: 70%; left: 40%;"></div>
+                <div class="absolute top-0 left-0 w-2 h-2 bg-neon-green rounded-full animate-pulse" style="animation-delay: 3s; top: 80%; left: 60%;"></div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="py-20 px-6 bg-dark-800">
+            <div class="max-w-4xl mx-auto">
+                <h2 class="text-3xl md:text-4xl font-bold mb-12 text-center glow-text" data-aos="fade-up">My Journey</h2>
+                
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div data-aos="fade-right">
+                        <h3 class="text-2xl font-bold mb-4 text-neon-blue">From Curiosity to Code</h3>
+                        <p class="text-gray-300 mb-6">
+                            My fascination with computers began when I first understood how code could create real-world solutions. 
+                            What started as simple programming exercises evolved into complex projects involving networking, 
+                            hardware integration, and problem-solving.
+                        </p>
+                        <p class="text-gray-300">
+                            Now, I'm channeling this passion toward cybersecurity - the perfect intersection of technology 
+                            and protecting what matters most in our digital age.
+                        </p>
+                    </div>
+                    
+                    <div data-aos="fade-left">
+                        <div class="bg-dark-900 p-6 rounded-lg border border-gray-800 glow-hover">
+                            <div class="flex items-start mb-4">
+                                <i data-feather="zap" class="text-neon-green mr-3"></i>
+                                <h4 class="text-xl font-bold">Fun Fact</h4>
+                            </div>
+                            <p class="text-gray-300">
+                                I once tried to build a plasma thruster 🚀. While it didn't quite achieve liftoff, 
+                                the experience taught me invaluable lessons about experimentation and persistence.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mt-16" data-aos="fade-up">
+                    <h3 class="text-2xl font-bold mb-8 text-center text-neon-blue">Education Path</h3>
+                    <div class="relative">
+                        <div class="absolute left-6 md:left-1/2 h-full w-0.5 bg-gray-700 transform -translate-x-1/2"></div>
+                        
+                        <div class="timeline-item mb-8 pl-12 md:pl-0 md:pr-12 md:w-1/2 md:ml-auto relative">
+                            <div class="bg-dark-900 p-6 rounded-lg border border-gray-700 glow-hover">
+                                <h4 class="text-lg font-bold mb-2">NEB Class 12</h4>
+                                <p class="text-gray-400 text-sm mb-2">2020-2022</p>
+                                <p class="text-gray-300">Laid the foundation for my technical education.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="timeline-item mb-8 pl-12 md:pl-12 md:w-1/2 relative">
+                            <div class="bg-dark-900 p-6 rounded-lg border border-gray-700 glow-hover">
+                                <h4 class="text-lg font-bold mb-2">BSc.CSIT</h4>
+                                <p class="text-gray-400 text-sm mb-2">2022-Present</p>
+                                <p class="text-gray-300">Deepening my knowledge in computer systems and programming.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="timeline-item pl-12 md:pl-0 md:pr-12 md:w-1/2 md:ml-auto relative">
+                            <div class="bg-dark-900 p-6 rounded-lg border border-gray-700 glow-hover">
+                                <h4 class="text-lg font-bold mb-2">Cybersecurity Company</h4>
+                                <p class="text-gray-400 text-sm mb-2">Future Goal</p>
+                                <p class="text-gray-300">Aspiring to establish my own cybersecurity firm.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills" class="py-20 px-6 bg-dark-900">
+            <div class="max-w-4xl mx-auto">
+                <h2 class="text-3xl md:text-4xl font-bold mb-12 text-center glow-text" data-aos="fade-up">My Skills</h2>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div data-aos="fade-right">
+                        <h3 class="text-2xl font-bold mb-6 text-neon-blue">Technical Skills</h3>
+                        
+                        <div class="mb-6">
+                            <div class="flex justify-between mb-2">
+                                <span class="font-medium">C Programming</span>
+                                <span class="text-gray-400">85%</span>
+                            </div>
+                            <div class="w-full bg-gray-800 rounded-full h-2">
+                                <div class="skill-bar h-2 rounded-full" style="width: 85%"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-6">
+                            <div class="flex justify-between mb-2">
+                                <span class="font-medium">JavaScript</span>
+                                <span class="text-gray-400">75%</span>
+                            </div>
+                            <div class="w-full bg-gray-800 rounded-full h-2">
+                                <div class="skill-bar h-2 rounded-full" style="width: 75%"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-6">
+                            <div class="flex justify-between mb-2">
+                                <span class="font-medium">Networking</span>
+                                <span class="text-gray-400">80%</span>
+                            </div>
+                            <div class="w-full bg-gray-800 rounded-full h-2">
+                                <div class="skill-bar h-2 rounded-full" style="width: 80%"></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div data-aos="fade-left">
+                        <h3 class="text-2xl font-bold mb-6 text-neon-blue">Professional Skills</h3>
+                        
+                        <div class="mb-6">
+                            <div class="flex justify-between mb-2">
+                                <span class="font-medium">Problem Solving</span>
+                                <span class="text-gray-400">90%</span>
+                            </div>
+                            <div class="w-full bg-gray-800 rounded-full h-2">
+                                <div class="skill-bar h-2 rounded-full" style="width: 90%"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-6">
+                            <div class="flex justify-between mb-2">
+                                <span class="font-medium">Teamwork</span>
+                                <span class="text-gray-400">85%</span>
+                            </div>
+                            <div class="w-full bg-gray-800 rounded-full h-2">
+                                <div class="skill-bar h-2 rounded-full" style="width: 85%"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-6">
+                            <div class="flex justify-between mb-2">
+                                <span class="font-medium">Communication</span>
+                                <span class="text-gray-400">80%</span>
+                            </div>
+                            <div class="w-full bg-gray-800 rounded-full h-2">
+                                <div class="skill-bar h-2 rounded-full" style="width: 80%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mt-16 text-center" data-aos="fade-up">
+                    <div class="inline-block bg-dark-800 border border-neon-blue rounded-full px-6 py-3 glow-hover">
+                        <div class="flex items-center">
+                            <i data-feather="shield" class="text-neon-green mr-2"></i>
+                            <span class="font-bold">Cybersecurity Enthusiast</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="py-20 px-6 bg-dark-800">
+            <div class="max-w-6xl mx-auto">
+                <h2 class="text-3xl md:text-4xl font-bold mb-12 text-center glow-text" data-aos="fade-up">My Projects</h2>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Project 1 -->
+                    <div class="project-card bg-dark-900 rounded-lg overflow-hidden border border-gray-800 transition-all hover:border-neon-blue glow-hover" data-aos="fade-up" data-aos-delay="100">
+                        <div class="h-48 overflow-hidden">
+                            <img src="http://static.photos/technology/800x450/1" alt="Bookgarum" class="w-full h-full object-cover">
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold mb-2">Bookgarum</h3>
+                            <p class="text-gray-400 mb-4">Vehicle booking website</p>
+                            <p class="text-gray-300 mb-4">A comprehensive platform for booking various vehicles with user authentication and payment integration.</p>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="text-xs px-3 py-1 bg-gray-800 rounded-full">HTML/CSS</span>
+                                <span class="text-xs px-3 py-1 bg-gray-800 rounded-full">JavaScript</span>
+                                <span class="text-xs px-3 py-1 bg-gray-800 rounded-full">PHP</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Project 2 -->
+                    <div class="project-card bg-dark-900 rounded-lg overflow-hidden border border-gray-800 transition-all hover:border-neon-blue glow-hover" data-aos="fade-up" data-aos-delay="200">
+                        <div class="h-48 overflow-hidden">
+                            <img src="http://static.photos/technology/800x450/2" alt="Car Parking" class="w-full h-full object-cover">
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold mb-2">Car Parking Auto Slot Detector</h3>
+                            <p class="text-gray-400 mb-4">Servo-based parking system</p>
+                            <p class="text-gray-300 mb-4">An automated parking slot detection system using servo motors and sensors to optimize space utilization.</p>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="text-xs px-3 py-1 bg-gray-800 rounded-full">Arduino</span>
+                                <span class="text-xs px-3 py-1 bg-gray-800 rounded-full">C++</span>
+                                <span class="text-xs px-3 py-1 bg-gray-800 rounded-full">Electronics</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <
